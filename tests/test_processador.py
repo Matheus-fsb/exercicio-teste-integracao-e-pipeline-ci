@@ -32,3 +32,15 @@ def test_contar_linhas_validas_arquivo_vazio(tmp_path):
     resultado = contar_linhas_validas(str(arquivo))    
     #Assert
     assert resultado == 0
+    
+import pytest
+from processador import contar_linhas_validas
+
+#Teste de caso de erro: Arquivo não existe
+
+def test_contar_linhas_validas_arquivo_inexistente(tmp_path):
+    # Arrange
+    arquivo = tmp_path / "arquivo_fantasma.csv"
+    # Act & Assert
+    with pytest.raises(FileNotFoundError):
+        contar_linhas_validas(str(arquivo))
